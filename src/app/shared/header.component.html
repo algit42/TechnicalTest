@@ -1,0 +1,17 @@
+<nav class="navbar" [class.mat-elevation-z8]=true>
+    <div>
+        <button *ngIf="showBackButton" mat-icon-button [routerLink]="'/'">
+            <mat-icon style="color: white;">
+                <i class="material-icons md-32">arrow_back</i>
+            </mat-icon>
+        </button>
+        <span style="padding-left: 8px; color: white;">{{currentTitle}}</span>
+    </div>
+    <span *ngIf="!showBackButton">
+        <img src="../assets/app-icon.png" style="margin-left: 20px; width: 40px;">
+        <span style="padding-left: 8px; color: white;">Chifoumi</span>
+    </span>
+    <button *ngIf="showTopPlayersNav" mat-button class="button" [routerLink]="'/topplayers'">
+        <span style="padding-left: 8px;">Top players</span>
+    </button>
+ </nav>

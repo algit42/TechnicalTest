@@ -1,0 +1,36 @@
+<div class="center profile-child">
+    <img class="avatar" src="../assets/avatar-sport.png">
+    <h1>{{ playerName }}</h1>
+    <div class="profile-actions">
+        <button *ngIf="!editMode" name="BtnChangeName" mat-raised-button color="accent" (click)="editMode = true">
+            <span>Change name</span>
+        </button>
+
+        <form *ngIf="editMode" [formGroup]="myForm" class="form-player" (ngSubmit)="onSubmitForm(myForm.value)">
+
+            <mat-form-field class="form-player-element">
+                <mat-label>Player name</mat-label>
+                <input formControlName="Name" name="Name" matInput placeholder="Please enter your name">
+                <mat-hint>Your best name!</mat-hint>
+                <mat-error>
+                    <span *ngIf="!myForm.get('Name').valid && myForm.get('Name').touched">Name is mandatory</span>
+                </mat-error>
+            </mat-form-field>
+            <div class="form-element">
+                <button name="BtnSave" mat-raised-button color="accent" [disabled]="!myForm.valid">
+                    <span>{{ btnSaveLabel }}</span>
+                </button>
+            </div>
+            
+        </form>
+
+    </div>
+</div>
+
+<!--Play Button-->
+<div *ngIf="!editMode" class="playBtnDiv">
+    <button class="playBtn" mat-raised-button color="primary" matTooltip="Play" matTooltipPosition="above"
+    routerLink="/newGame">
+        New game
+    </button>
+</div>

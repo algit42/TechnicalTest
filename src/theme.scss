@@ -1,0 +1,54 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+// Custom components
+@mixin navbar-theme($theme) {
+    // Extract the palettes you need from the theme definition.
+    $primary: map-get($theme, primary);
+
+    // Define any styles affected by the theme.
+    .navbar {
+      // Use mat-color to extract individual colors from a palette.
+      background: mat-color($primary);
+    }
+  }
+
+/* typography
+  @mixin candy-carousel-typography($config) {
+    .candy-carousel {
+      font: {
+        family: mat-font-family($config, body-1);
+        size: mat-font-size($config, body-1);
+        weight: mat-font-weight($config, body-1);
+      }
+    }
+  }
+
+  in custom comp scss :  This generally includes everything except for color and typography styles.
+  */
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$Chifoumi-primary: mat-palette($mat-red, A700);
+$Chifoumi-accent: mat-palette($mat-red, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$Chifoumi-warn: mat-palette($mat-indigo);
+
+// Light theme
+$Chifoumi-theme: mat-light-theme($Chifoumi-primary, $Chifoumi-accent, $Chifoumi-warn);
+
+// Dark theme
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A400);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+.chifoumi-dark-theme {
+    @include angular-material-theme($dark-theme);
+  }
+
+// Main theme
+@include angular-material-theme($Chifoumi-theme);
+
+// Theme custom compo
+@include navbar-theme($Chifoumi-theme);

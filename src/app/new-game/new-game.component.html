@@ -1,0 +1,72 @@
+<btc-header [showBackButton]="showBackButton" [currentTitle]="title" [showTopPlayersNav]="showTopPlayersNav">
+</btc-header>
+
+
+<mat-card class="gameCard" [class.mat-elevation-z12]=true>
+    <div class="gameContent">
+
+        <h2>Score</h2>
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 10%;text-align: right;">{{ playerName }}</td>
+                <td>
+                    <mat-progress-bar mode="determinate" value="{{ playerWins / totalPlays * 100 }}"></mat-progress-bar>
+                </td>
+                <td style="width: 10%">CPU</td>
+            </tr>
+        </table>
+        <table style="width: 100%"></table>
+        <tr>
+            <td style="text-align: center;">{{ playerName }}: <strong>{{ playerWins }}</strong> - CPU: <strong>{{ cpuWins }}</strong> - Games played: <strong>{{ totalPlays }}</strong></td>
+        </tr>
+
+        <span class="vert-space"></span>
+        <span class="vert-space"></span>
+
+        <h2><span color="accent">{{ playerName }}</span>, click or tap on a hand to play:</h2>
+
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <img class="handImg" [style]="isRockSelected ? 'border:4px solid #021a40' : ''"
+                            (click)="selectImage(0)" src="../assets/rock.png">
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <img class="handImg" [style]="isPaperSelected ? 'border:4px solid #021a40' : ''"
+                            (click)="selectImage(1)" src="../assets/paper.png">
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <img class="handImg" [style]="isScissorSelected ? 'border:4px solid #021a40' : ''"
+                            (click)="selectImage(2)" src="../assets/scissor.png">
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <span class="vert-space"></span>
+
+        <h2>CPU choice: </h2>
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        <img *ngIf="cpuSelectedImage" class="handImg" src="{{ cpuSelectedImage }}">
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <span class="vert-space"></span>
+        <span class="vert-space"></span>
+
+    </div>
+</mat-card>
+
+<button name="BtnEndGame" mat-raised-button class="endBtn-bottom-right" color="primary" (click)="manageEndGame()">
+    End game
+</button>
