@@ -10,7 +10,7 @@
             <tr>
                 <td style="width: 10%;text-align: right;">{{ playerName }}</td>
                 <td>
-                    <mat-progress-bar mode="determinate" value="{{ playerWins / totalPlays * 100 }}"></mat-progress-bar>
+                    <mat-progress-bar mode="determinate" value="{{ playerWins / (playerWins + cpuWins) * 100 }}"></mat-progress-bar>
                 </td>
                 <td style="width: 10%">CPU</td>
             </tr>
